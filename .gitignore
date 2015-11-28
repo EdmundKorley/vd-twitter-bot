@@ -1,9 +1,5 @@
 # Logs
 npm-debug.log
 
-# Config
-ritetag_config.js
-twitter_config.js
-
 # Node modules
 node_modules
