@@ -60,7 +60,7 @@ function retweetThis() {
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) return console.error(error);
-    activeHashtag = '#' + results.data[1].tag; // get most hashtag with highest correlation to #blacklivesmatter
+    activeHashtag = [('#' + results.data[0].tag), ('#' + results.data[1].tag)]; // get hashtag tuple with highest correlation to #blacklivesmatter
     console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
   });
 
