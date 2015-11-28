@@ -28,7 +28,7 @@ var toTweet;
 
 //upon call, listen for statuses with hastag
 function streamHastag() {
-  var stream = T.stream('statuses/filter', { track: activeHashtag, language: 'en' });
+  var stream = T.stream('statuses/filter', { track: activeHashtag, language: 'en', filter_level: 'medium' });
 
   stream.on('tweet', function(tweet) {
 
