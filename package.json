@@ -17,6 +17,7 @@
   "author": "EMK",
   "license": "ISC",
   "dependencies": {
+    "ritetag": "^0.1.1",
     "twit": "^2.1.1"
   }
 }
