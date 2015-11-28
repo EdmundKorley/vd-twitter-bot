@@ -1,8 +1,27 @@
+var consumer_key = process.env.consumer_key;
+var consumer_secret = process.env.consumer_secret;
+var access_token = process.env.access_token;
+var access_token_secret = process.env.access_token_secret;
+var clientId = process.env.clientId;
+var clientSecret = process.env.clientSecret;
+var oauthToken = process.env.oauthToken;
+var oauthSecret = process.env.oauthSecret;
+
 var Twit = require('twit');
-var T = new Twit(require('./twitter_config'));
+var T = new Twit({
+  consumer_key: consumer_key,
+  consumer_secret: consumer_secret,
+  access_token: access_token,
+  access_token_secret: access_token_secret,
+});
 
 var Ritetag = require('ritetag');
-var rt = new Ritetag(require('./ritetag_config'));
+var rt = new Ritetag({
+  clientId: clientId,
+  clientSecret: clientSecret,
+  oauthToken: oauthToken,
+  oauthSecret: oauthSecret,
+});
 
 var activeHashtag = '#blacklivesmatter';
 var toTweet;

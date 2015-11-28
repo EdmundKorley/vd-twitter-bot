@@ -1,5 +1,8 @@
 {
   "name": "VisualDecolonization",
+  "engines": {
+    "node": "4.2.0"
+  },
   "version": "1.0.0",
   "description": "Twitter bot. Detects and RTs live protest media. The revolution is now. Trigger Warning: This bot may pick up tweets of movement antagonists. ✊ Made by @_emkk",
   "main": "bot.js",
