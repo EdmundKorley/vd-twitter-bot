@@ -33,14 +33,14 @@ function streamHastag() {
 
     if (isOriginalMedia(tweet)) {
       console.log('\n\n' + tweet.text + '\n\n');
-      setTimeout(retweetThis, 10000);
+      setTimeout(function() {
+        retweetThis(tweet.id_str);
+      }, 10000);
 
       // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
       stream.stop();
       console.log('PACING TWEET RATE');
-      setTimeout(function() {
-        streamHastag(tweet.id_str);
-      }, 60000);
+      setTimeout(streamHastag, 60000);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
     }
@@ -61,7 +61,7 @@ function retweetThis(toTweet) {
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) return console.error(error);
-    activeHashtag = [('#' + results.data[0].tag), ('#' + results.data[1].tag), ('#' + results.data[2].tag), ('#' + results.data[3].tag)]; // Get hashtag tuple with highest correlation to #blacklivesmatter
+    activeHashtag = [('#' + results.data[0].tag), ('#' + results.data[1].tag), ('#' + results.data[2].tag)]; // Get hashtag tuple with highest correlation to #blacklivesmatter
     console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
   });
 
