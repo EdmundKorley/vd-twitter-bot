@@ -39,7 +39,7 @@ function streamHastag() {
       stream.stop();
       console.log('PACING TWEET RATE');
       setTimeout(function() {
-        streamHastag(tweet.id.str);
+        streamHastag(tweet.id_str);
       }, 60000);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
