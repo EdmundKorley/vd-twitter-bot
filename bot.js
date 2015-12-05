@@ -23,10 +23,9 @@ var rt = new Ritetag({
   oauthSecret: oauthSecret,
 });
 
-var activeHashtag = '#blacklivesmatter';
-var toTweet;
+var activeHashtag = '#blacklivesmatter'; // Set a default hashtag value that is passed to Ritetag API
 
-//upon call, listen for statuses with hastag
+//Upon call, listen for statuses with hastag
 function streamHastag() {
   var stream = T.stream('statuses/filter', { track: activeHashtag, language: 'en' });
 
@@ -34,13 +33,14 @@ function streamHastag() {
 
     if (isOriginalMedia(tweet)) {
       console.log('\n\n' + tweet.text + '\n\n');
-      toTweet = tweet.id_str;
       setTimeout(retweetThis, 10000);
 
-      // stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
+      // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
       stream.stop();
       console.log('PACING TWEET RATE');
-      setTimeout(streamHastag, 60000);
+      setTimeout(function() {
+        streamHastag(tweet.id.str);
+      }, 60000);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
     }
@@ -52,7 +52,7 @@ function isOriginalMedia(data) {
   return ((data.text.substring(0, 2) != 'RT' && data.text.substring(0, 1) != '@' && data.text.substring(0, 4) != 'City') && (data.entities.media));
 }
 
-function retweetThis() {
+function retweetThis(toTweet) {
   T.post('statuses/retweet/:id', { id: toTweet }, function(err, data, response) {
     console.log('TWEET ' + toTweet + ' HAS BEEN RETWETED');
   });
@@ -61,13 +61,12 @@ function retweetThis() {
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) return console.error(error);
-    activeHashtag = [('#' + results.data[0].tag), ('#' + results.data[1].tag)]; // get hashtag tuple with highest correlation to #blacklivesmatter
+    activeHashtag = [('#' + results.data[0].tag), ('#' + results.data[1].tag), ('#' + results.data[2].tag), ('#' + results.data[3].tag)]; // Get hashtag tuple with highest correlation to #blacklivesmatter
     console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
   });
 
-  setTimeout(getTrends, 30 * 60 * 1000); // update active hashtag every hour
+  setTimeout(getTrends, 30 * 60 * 1000); // Update active hashtag every hour
 }
 
 getTrends();
-
 streamHastag();
