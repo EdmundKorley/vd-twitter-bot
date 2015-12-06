@@ -61,7 +61,8 @@ function retweetThis(toTweetID) {
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) { return console.error(error) };
-    activeHashtag = [ ('#' + results.data[0].tag), ('#' + results.data[1].tag) ]; // Get hashtag tuple with highest correlation to #blacklivesmatter
+    activeHashtag = [ ('#' + results.data[0].tag), ('#' + results.data[1].tag) ]; // Get hashtag tuple
+    activeHashtag.push('#mariowoods', '#sandrabland', '#laquanmcdonald', '#kendrickjohnson', '#freddiegray') // Manual patch till NLP
     console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
   });
 
