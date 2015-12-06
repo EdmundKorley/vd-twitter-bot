@@ -52,16 +52,16 @@ function isOriginalMedia(data) {
   return ((data.text.substring(0, 2) != 'RT' && data.text.substring(0, 1) != '@' && data.text.substring(0, 4) != 'City') && (data.entities.media));
 }
 
-function retweetThis(toTweet) {
-  T.post('statuses/retweet/:id', { id: toTweet }, function(err, data, response) {
-    console.log('TWEET ' + toTweet + ' HAS BEEN RETWETED');
+function retweetThis(toTweetID) {
+  T.post('statuses/retweet/:id', { id: toTweetID }, function(err, data, response) {
+    console.log('TWEET ' + toTweetID + ' HAS BEEN RETWETED');
   });
 }
 
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
-    if (error) return console.error(error);
-    activeHashtag = [('#' + results.data[0].tag), ('#' + results.data[1].tag), ('#' + results.data[2].tag)]; // Get hashtag tuple with highest correlation to #blacklivesmatter
+    if (error) { return console.error(error) };
+    activeHashtag = [ ('#' + results.data[0].tag), ('#' + results.data[1].tag) ]; // Get hashtag tuple with highest correlation to #blacklivesmatter
     console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
   });
 
