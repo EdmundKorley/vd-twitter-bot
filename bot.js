@@ -18,7 +18,7 @@ var activeHashtag = '#blacklivesmatter'; // Set a default hashtag value that is 
 
 //Upon call, listen for statuses with hastag
 function streamHastag() {
-  var stream = T.stream('statuses/filter', { track: activeHashtag, language: 'en' });
+  var stream = T.stream('statuses/filter', { track: video, language: 'en' });
 
   stream.on('tweet', function(tweet) {
 
@@ -31,10 +31,10 @@ function streamHastag() {
       // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
       stream.stop();
       console.log('PACING TWEET RATE');
-      setTimeout(streamHastag, 60000);
+      setTimeout(streamHastag, 10);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
-      console.log(tweet.extended_entities);
+      console.log(tweet);
     }
 
   });
