@@ -41,7 +41,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  return data.extended_entities.media[0].video_info;
+  return data['extended_entities']['media'][0]['video_info'];
 }
 
 function retweetThis(toTweetID) {
