@@ -53,7 +53,7 @@ function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) { return console.error(error) };
     activeTracks = [ (results.data[0].tag), (results.data[1].tag), (results.data[2].tag) ]; // Get hashtag triplet from RiteTag
-    activeTracks.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', '#BrandonTateBrown', 'Brandon Tate-Brown', 'freddiegray', 'police brutality', 'racism', 'discrimination') // Manual patch till NLP
+    activeTracks.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', '#BrandonTateBrown', 'Brandon Tate-Brown', 'freddiegray', 'police brutality') // Manual patch till NLP
     console.log(activeTracks + ' HAS BEEN SET AS THE ACTIVE TRACKS');
   });
 
