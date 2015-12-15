@@ -41,7 +41,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  return ( data.text.substring(0, 2) != 'RT' && data.text.substring(0, 1) != '@' && (data.entities.media[0].type === 'video') );
+  return data.entities.media;
 }
 
 function retweetThis(toTweetID) {
