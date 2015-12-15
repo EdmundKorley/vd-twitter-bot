@@ -1,26 +1,17 @@
-var consumer_key = process.env.consumer_key;
-var consumer_secret = process.env.consumer_secret;
-var access_token = process.env.access_token;
-var access_token_secret = process.env.access_token_secret;
-var clientId = process.env.clientId;
-var clientSecret = process.env.clientSecret;
-var oauthToken = process.env.oauthToken;
-var oauthSecret = process.env.oauthSecret;
-
 var Twit = require('twit');
 var T = new Twit({
-  consumer_key: consumer_key,
-  consumer_secret: consumer_secret,
-  access_token: access_token,
-  access_token_secret: access_token_secret,
+  consumer_key: process.env.consumer_key,
+  consumer_secret:process.env.consumer_secret,
+  access_token: process.env.access_token,
+  access_token_secret: process.env.access_token_secret,
 });
 
 var Ritetag = require('ritetag');
 var rt = new Ritetag({
-  clientId: clientId,
-  clientSecret: clientSecret,
-  oauthToken: oauthToken,
-  oauthSecret: oauthSecret,
+  clientId: process.env.clientId,
+  clientSecret: process.env.clientSecret,
+  oauthToken: process.env.oauthToken,
+  oauthSecret: process.env.oauthSecret,
 });
 
 var activeHashtag = '#blacklivesmatter'; // Set a default hashtag value that is passed to Ritetag API
