@@ -34,13 +34,14 @@ function streamHastag() {
       setTimeout(streamHastag, 60000);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
+      console.log(tweet);
     }
 
   });
 }
 
 function isOriginalMedia(data) {
-  return ( data.text.substring(0, 2) != 'RT' && data.text.substring(0, 1) != '@' && (data.entities.media) );
+  return ( data.text.substring(0, 2) != 'RT' && data.text.substring(0, 1) != '@' && (data.entities.media[0].type === 'video') );
 }
 
 function retweetThis(toTweetID) {
