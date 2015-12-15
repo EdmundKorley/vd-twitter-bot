@@ -23,11 +23,10 @@ function streamHastag() {
   stream.on('tweet', function(tweet) {
 
     if (isOriginalMedia(tweet)) {
-      console.log('DEBUG: TWEET, ENTITIES, EX_ENT')
-      console.log(tweet, '\n\n' + tweet.entities + '\n\n', tweet.extended_entities);
-      // setTimeout(function() {
-      //   console.log(tweet.extended_entities)// retweetThis(tweet.id_str);
-      // }, 10000);
+      console.log(tweet);
+      setTimeout(function() {
+        retweetThis(tweet.id_str);
+      }, 10000);
 
       // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
       stream.stop();
