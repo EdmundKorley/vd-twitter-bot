@@ -41,7 +41,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  return data.extended_entities.video_info;
+  return data.extended_entities;
 }
 
 function retweetThis(toTweetID) {
@@ -58,7 +58,7 @@ function getTrends() {
     console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
   });
 
-  setTimeout(getTrends, 30 * 60 * 1000); // Update active hashtag every hour
+  setTimeout(getTrends, 30 * 60 * 1000); // Update active hashtag every half hour
 }
 
 getTrends();
