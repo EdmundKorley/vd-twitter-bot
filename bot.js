@@ -18,7 +18,7 @@ var activeHashtag = '#blacklivesmatter'; // Set a default hashtag value that is 
 
 //Upon call, listen for statuses with hastag
 function streamHastag() {
-  var stream = T.stream('statuses/filter', { track: video, language: 'en' });
+  var stream = T.stream('statuses/filter', { track: 'video', language: 'en' });
 
   stream.on('tweet', function(tweet) {
 
