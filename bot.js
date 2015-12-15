@@ -34,7 +34,7 @@ function streamHastag() {
       setTimeout(streamHastag, 10);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
-      console.log(tweet);
+      // console.log(tweet);
     }
 
   });
