@@ -23,7 +23,7 @@ function streamHastag() {
   stream.on('tweet', function(tweet) {
 
     if (isOriginalMedia(tweet)) {
-      console.log(tweet.extended_entities.media[0]);
+      console.log(tweet.extended_entities.media);
       // setTimeout(function() {
       //   retweetThis(tweet.id_str);
       // }, 10000);
@@ -41,7 +41,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  return data.extended_entities.media[0];
+  return data.extended_entities.media[0].video_info;
 }
 
 function retweetThis(toTweetID) {
