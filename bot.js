@@ -14,16 +14,16 @@ var rt = new Ritetag({
   oauthSecret: process.env.oauthSecret,
 });
 
-var activeHashtag = '#blacklivesmatter'; // Set a default hashtag value that is passed to Ritetag API
+var activeTracks = '#blacklivesmatter'; // Set a default hashtag value that is passed to Ritetag API
 
 //Upon call, listen for statuses with hastag
 function streamHastag() {
-  var stream = T.stream('statuses/filter', { track: activeHashtag, language: 'en' });
+  var stream = T.stream('statuses/filter', { track: activeTracks, language: 'en' });
 
   stream.on('tweet', function(tweet) {
 
     if (isOriginalMedia(tweet)) {
-      console.log(tweet.text);
+      console.log(tweet.text, text.);
       setTimeout(function() {
         retweetThis(tweet.id_str);
       }, 10000);
@@ -40,7 +40,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  if (data['extended_entities']) { if (data['extended_entities']['media']) { if (data['extended_entities']['media'][0]) { return data['extended_entities']['media'][0]['video_info'] } } }
+  if (data['extended_entities']) { if (data['extended_entities']['media']) { if (data['extended_entities']['media'][0]) { return data['extended_entities']['media'][0]['video_info'] && !data['retweeted'] } } }
 }
 
 function retweetThis(toTweetID) {
@@ -52,12 +52,12 @@ function retweetThis(toTweetID) {
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) { return console.error(error) };
-    activeHashtag = [ (results.data[0].tag), (results.data[1].tag) ]; // Get hashtag tuple
-    activeHashtag.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'freddiegray') // Manual patch till NLP
-    console.log(activeHashtag + ' HAS BEEN SET AS THE ACTIVE HASHTAG');
+    activeTracks = [ (results.data[0].tag), (results.data[1].tag), (results.data[2].tag) ]; // Get hashtag triplet from RiteTag
+    activeTracks.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', '#BrandonTateBrown', 'freddiegray', 'police brutality', 'racism', 'discrimination') // Manual patch till NLP
+    console.log(activeTracks + ' HAS BEEN SET AS THE ACTIVE TRACKS');
   });
 
-  setTimeout(getTrends, 30 * 60 * 1000); // Update active hashtag every half hour
+  setTimeout(getTrends, 30 * 60 * 1000); // Update active tracks every half hour
 }
 
 getTrends();
