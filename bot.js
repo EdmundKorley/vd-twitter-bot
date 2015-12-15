@@ -23,18 +23,17 @@ function streamHastag() {
   stream.on('tweet', function(tweet) {
 
     if (isOriginalMedia(tweet)) {
-      console.log(tweet['extended_entities']['media']);
-      // setTimeout(function() {
-      //   retweetThis(tweet.id_str);
-      // }, 10000);
+      console.log(tweet.text);
+      setTimeout(function() {
+        retweetThis(tweet.id_str);
+      }, 10000);
 
       // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
       stream.stop();
       console.log('PACING TWEET RATE');
-      setTimeout(streamHastag, 10);
+      setTimeout(streamHastag, 1000);
     } else {
       console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
-      // console.log(tweet);
     }
 
   });
