@@ -42,7 +42,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  return data.entities.media[0];
+  return data.extended_entities;
 }
 
 function retweetThis(toTweetID) {
