@@ -40,7 +40,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  if (data['extended_entities']) { if (data['extended_entities']['media']) { if (data['extended_entities']['media'][0]) { return data['extended_entities']['media'][0]['video_info'] && !data['retweeted'] } } }
+  if (data['extended_entities']) { if (data['extended_entities']['media']) { if (data['extended_entities']['media'][0]) { return data['extended_entities']['media'][0]['video_info'] || data['entities']['media'] } } }
 }
 
 function retweetThis(toTweetID) {
@@ -53,7 +53,7 @@ function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) { return console.error(error) };
     activeTracks = [ (results.data[0].tag), (results.data[1].tag), (results.data[2].tag) ]; // Get hashtag triplet from RiteTag
-    activeTracks.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', '#BrandonTateBrown', 'Brandon Tate-Brown', 'freddiegray', 'police brutality') // Manual patch till NLP
+    activeTracks.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', '#BrandonTateBrown', 'Brandon Tate-Brown', 'freddiegray', 'black lives matter protest') // Manual patch till NLP
     console.log(activeTracks + ' HAS BEEN SET AS THE ACTIVE TRACKS');
   });
 
