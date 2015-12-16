@@ -23,7 +23,7 @@ function streamHastag() {
   stream.on('tweet', function(tweet) {
 
     if (isOriginalMedia(tweet)) {
-      console.log(tweet.text);
+      console.log(tweet);
       setTimeout(function() {
         retweetThis(tweet.id_str);
       }, 10000);
