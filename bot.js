@@ -14,6 +14,8 @@ var rt = new Ritetag({
   oauthSecret: process.env.oauthSecret,
 });
 
+var activeTracks = 'blacktwitter';
+
 //Upon call, listen for statuses with hastag
 function streamHastag() {
   var stream = T.stream('statuses/filter', { track: activeTracks, language: 'en' });
@@ -47,7 +49,6 @@ function retweetThis(toTweetID) {
   });
 }
 
-var activeTracks;
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) { return console.error(error) };
