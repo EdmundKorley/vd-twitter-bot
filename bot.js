@@ -40,7 +40,7 @@ function streamHastag() {
 }
 
 function isOriginalMedia(data) {
-  if (data['extended_entities']) { if (data['extended_entities']['media']) { if (data['extended_entities']['media'][0]) { return data['extended_entities']['media'][0]['video_info'] || data['entities']['media'] } } }
+  if (data['extended_entities']) { if (data['extended_entities']['media']) { if (data['extended_entities']['media'][0]) { return data['extended_entities']['media'][0]['video_info'] } } }
 }
 
 function retweetThis(toTweetID) {
