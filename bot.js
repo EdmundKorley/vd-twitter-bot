@@ -30,10 +30,10 @@ function streamHastag() {
 
       // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
       stream.stop();
-      console.log('PACING TWEET RATE');
-      setTimeout(streamHastag, 30000);
+      console.log('...PACING TWEET RATE...');
+      setTimeout(streamHastag, 60000);
     } else {
-      console.log('TWEET ' + tweet.id +  ' WAS REJECTED');
+      console.log('TWEET ' + tweet.id +  ' WAS REJECTED. CONTENT WAS:\n' + tweet.text + '\nWAITING FOR NEXT TWEET.');
     }
 
   });
