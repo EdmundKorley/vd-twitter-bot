@@ -14,7 +14,7 @@ var rt = new Ritetag({
   oauthSecret: process.env.oauthSecret,
 });
 
-var activeTracks = 'mikebrown';
+var activeTracks = 'laquanmcdonald';
 
 //Upon call, listen for statuses with hastag
 function streamHastag() {
