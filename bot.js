@@ -14,7 +14,7 @@ var rt = new Ritetag({
   oauthSecret: process.env.oauthSecret,
 });
 
-var activeTracks = 'blacktwitter';
+var activeTracks = 'mikebrown';
 
 //Upon call, listen for statuses with hastag
 function streamHastag() {
@@ -52,8 +52,8 @@ function retweetThis(toTweetID) {
 function getTrends() {
   rt.hashtagDirectory('blacklivesmatter', function(error, results) {
     if (error) { return console.error(error) };
-    activeTracks = [ (results.data[0].tag), (results.data[1].tag), (results.data[2].tag) ]; // Get hashtag triplet from RiteTag
-    activeTracks.push('mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', '#BrandonTateBrown', 'Brandon Tate-Brown', 'freddiegray', 'black lives matter protest') // Manual patch till NLP
+    // activeTracks = [ (results.data[1].tag), (results.data[1].tag), (results.data[2].tag) ]; // Get hashtag triplet from RiteTag. Table till better content filtering
+    activeTracks.push('tamirrice', 'mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter') // Manual patch till NLP
     console.log(activeTracks + ' HAS BEEN SET AS THE ACTIVE TRACKS');
   });
 
