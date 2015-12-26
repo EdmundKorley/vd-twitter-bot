@@ -1,4 +1,5 @@
 var Twit = require('twit');
+
 var T = new Twit({
   consumer_key: process.env.consumer_key,
   consumer_secret:process.env.consumer_secret,
@@ -6,17 +7,9 @@ var T = new Twit({
   access_token_secret: process.env.access_token_secret,
 });
 
-var Ritetag = require('ritetag');
-var rt = new Ritetag({
-  clientId: process.env.clientId,
-  clientSecret: process.env.clientSecret,
-  oauthToken: process.env.oauthToken,
-  oauthSecret: process.env.oauthSecret,
-});
+var activeTracks = ['tamirrice', 'mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier'];
 
-var activeTracks = 'laquanmcdonald';
-
-//Upon call, listen for statuses with hastag
+// Upon call, listen for statuses with hastag
 function streamHastag() {
   var stream = T.stream('statuses/filter', { track: activeTracks, language: 'en' });
 
@@ -49,16 +42,4 @@ function retweetThis(toTweetID) {
   });
 }
 
-function getTrends() {
-  rt.hashtagDirectory('blacklivesmatter', function(error, results) {
-    if (error) { return console.error(error) };
-    // activeTracks = [ (results.data[1].tag), (results.data[1].tag), (results.data[2].tag) ]; // Get hashtag triplet from RiteTag. Table till better content filtering
-    activeTracks.push('tamirrice', 'mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter') // Manual patch till NLP
-    console.log(activeTracks + ' HAS BEEN SET AS THE ACTIVE TRACKS');
-  });
-
-  setTimeout(getTrends, 30 * 60 * 1000); // Update active tracks every half hour
-}
-
-getTrends();
 streamHastag();
