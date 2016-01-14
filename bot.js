@@ -7,7 +7,7 @@ var T = new Twit({
   access_token_secret: process.env.access_token_secret,
 });
 
-var activeTracks = ['tamirrice', 'mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier'];
+var activeTracks = ['tamirrice', 'mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill'];
 
 // Upon call, listen for statuses with hastag
 function streamHastag() {
