@@ -1,5 +1,3 @@
-### December 5th, 2015
-
 Visual Decolonization :fist:
 =============
 
