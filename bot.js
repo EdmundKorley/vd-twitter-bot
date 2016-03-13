@@ -1,5 +1,6 @@
-var Twit = require('twit');
 var natural = require('natural');
+
+var Twit = require('twit');
 var keys = require('./keys');
 
 var T = new Twit({
@@ -9,7 +10,9 @@ var T = new Twit({
     access_token_secret: process.env.access_token_secret || keys.access_token_secret,
 });
 
-var activeTracks = ['tamirrice', 'mariowoods', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'];
+var activeTracks = [
+    'protest', 'tamirrice', 'mariowoods', 'trumprally', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'
+];
 
 // Upon call, listen for statuses with hastag
 function streamHastag() {
@@ -19,38 +22,37 @@ function streamHastag() {
     });
 
     stream.on('tweet', function(tweet) {
+        var video = isOriginalMedia(tweet);
+        if (video) {
+            // Retweet
+            retweetThis(tweet.id_str);
 
-        if (isOriginalMedia(tweet)) {
-            console.log(tweet);
-            setTimeout(function() {
-                retweetThis(tweet.id_str);
-            }, 10000);
-
-            // Stop and start streamHastag again recursively after a minute (to maintain a max rate of ~1 tweet/min)
+            // Stop and start streamHastag again recursively after a minute
+            // to maintain a max rate of ~1 tweet/min
             stream.stop();
             setTimeout(streamHastag, 60000);
-        } else {
-            console.log('TWEET ' + tweet.id + ' WAS REJECTED. CONTENT WAS:\n' + tweet.text + '\nWAITING FOR NEXT TWEET.');
         }
-
     });
 }
 
 function isOriginalMedia(data) {
     if (data['extended_entities']) {
-        if (data['extended_entities']['media']) {
-            if (data['extended_entities']['media'][0]) {
-                return data.entities.media
-            }
+        var mediaArr = data['extended_entities']['media'];
+        if (mediaArr) {
+            mediaArr.forEach(function(mediaObj) {
+                if (mediaObj.type === 'video') {
+                    console.log(mediaObj);
+                    return true;
+                }
+            });
         }
     }
 }
 
 function retweetThis(toTweetID) {
-    T.post('statuses/retweet/:id', {
-        id: toTweetID
-    }, function(err, data, response) {
-        console.log('TWEET ' + toTweetID + ' HAS BEEN RETWEETED');
+    T.post('statuses/retweet/:id', { id: toTweetID }, function(err, data, response) {
+        if (err) console.warn(err);
+        console.log('RETWEETED: ' + toTweetID);
     });
 }
 
