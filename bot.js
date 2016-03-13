@@ -20,15 +20,18 @@ function streamHastag() {
     });
 
     stream.on('tweet', function(tweet) {
-        var video = isOriginalMedia(tweet);
-        if (video) {
+        if (isOriginalMedia(tweet)) {
             // Retweet
-            retweetThis(tweet.id_str);
+            setTimeout(function() {
+                retweetThis(tweet.id_str);
+            }, 10000);
 
             // Stop and start streamHastag again recursively after a minute
             // to maintain a max rate of ~1 tweet/min
             stream.stop();
             setTimeout(streamHastag, 60000);
+        } else {
+            console.log('REJECTED: ', tweet.id_str);
         }
     });
 }
@@ -45,6 +48,7 @@ function isOriginalMedia(data) {
             });
         }
     }
+    return false;
 }
 
 function retweetThis(toTweetID) {
