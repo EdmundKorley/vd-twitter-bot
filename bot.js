@@ -9,7 +9,7 @@ var T = new Twit({
 });
 
 var activeTracks = [
-    'protest', 'tamirrice', 'mariowoods', 'trumprally', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'
+    'protest', 'uprising', 'tamirrice', 'mariowoods', 'trumprally', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'
 ];
 
 // Upon call, listen for statuses with hastag
@@ -39,7 +39,7 @@ function isOriginalMedia(data) {
         if (mediaArr) {
             mediaArr.forEach(function(mediaObj) {
                 if (mediaObj.type === 'video') {
-                    console.log(mediaObj);
+                    console.log('HIT: ', data.id_str);
                     return true;
                 }
             });
