@@ -9,7 +9,7 @@ var T = new Twit({
 });
 
 var activeTracks = [
-    'protest', 'uprising', 'tamirrice', 'mariowoods', 'trumprally', 'trump', 'hillary', 'sanders', 'blacklivesmatter', 'baltimore uprising', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson',
+    'protest', 'baltimoreuprising', 'tamirrice', 'mariowoods', 'trumprally', 'blacklivesmatter', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson',
     'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'
 ];
 
