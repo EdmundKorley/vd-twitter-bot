@@ -9,7 +9,8 @@ var T = new Twit({
 });
 
 var activeTracks = [
-    'protest', 'uprising', 'tamirrice', 'mariowoods', 'trumprally', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson', 'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'
+    'protest', 'uprising', 'tamirrice', 'mariowoods', 'trumprally', 'trump', 'hillary', 'sanders', 'blacklivesmatter', 'baltimore uprising', 'sandrabland', 'laquanmcdonald', 'kendrickjohnson',
+    'BrandonTateBrown', 'freddiegray', 'VonDerritMyers', 'portertrial', 'williamporter', 'bettiejones', 'quintoniolegrier', 'cedrickchatman', 'emmetttill', 'gynnyamcmillen', 'anthonyhill'
 ];
 
 // Upon call, listen for statuses with hastag
@@ -22,6 +23,7 @@ function streamHastag() {
     stream.on('tweet', function(tweet) {
         if (isOriginalMedia(tweet)) {
             // Retweet
+            console.log('TRYING TO RETWEET 😬');
             setTimeout(function() {
                 retweetThis(tweet.id_str);
             }, 10000);
@@ -31,30 +33,30 @@ function streamHastag() {
             stream.stop();
             setTimeout(streamHastag, 60000);
         } else {
-            console.log('REJECTED: ', tweet.id_str);
+            console.log('REJECTED 🔇: ', tweet.id_str);
         }
     });
 }
 
 function isOriginalMedia(data) {
+    var seen = false;
     if (data['extended_entities']) {
         var mediaArr = data['extended_entities']['media'];
         if (mediaArr) {
             mediaArr.forEach(function(mediaObj) {
                 if (mediaObj.type === 'video') {
-                    console.log('HIT: ', data.id_str);
-                    return true;
+                    console.log('HIT 👊🏾: ', data.id_str);
+                    seen = true;
                 }
             });
         }
     }
-    return false;
+    return seen;
 }
 
 function retweetThis(toTweetID) {
     T.post('statuses/retweet/:id', { id: toTweetID }, function(err, data, response) {
-        if (err) console.warn(err);
-        console.log('RETWEETED: ' + toTweetID);
+        console.log('RETWEETED 😝: ' + toTweetID);
     });
 }
 
