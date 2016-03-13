@@ -4,7 +4,16 @@
     "node": "4.2.0"
   },
   "version": "1.0.0",
-  "description": "Twitter bot. Detects and RTs live protest media. The revolution is now. Trigger Warning: This bot may pick up tweets of movement antagonists. ✊ Made by @_emkk",
+  "description": "Twitter bot. Detects and RTs live protest media.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emkk/vd-twitter-bot.git"
+  },
+  "author": "Edmund Korley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emkk/vd-twitter-bot/issues"
+  },
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
@@ -14,9 +23,8 @@
     "twitter",
     "functionality"
   ],
-  "author": "EMK",
-  "license": "ISC",
   "dependencies": {
+    "natural": "^0.4.0",
     "ritetag": "^0.1.1",
     "twit": "^2.1.1"
   }
