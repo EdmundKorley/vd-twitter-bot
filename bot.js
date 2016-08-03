@@ -8,7 +8,7 @@ var T = new Twit({
     access_token_secret: process.env.access_token_secret,
 });
 
-var activeTracks = [ 'charleskinsey' ];
+var activeTracks = [ 'KorrynGaines' ];
 
 // Upon call, listen for statuses with hastag
 function streamHastag() {
