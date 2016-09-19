@@ -1,4 +1,3 @@
-var natural = require('natural');
 var Twit = require('twit');
 
 var T = new Twit({
