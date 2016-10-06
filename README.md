@@ -5,6 +5,6 @@ Visual Decolonization Twitter bot :fist:
 
 To-do:
 
-- [ ] Neural net for classifying shitposters.
-- [ ] Net for building 'trusted' network of protesters.
-- [ ] Conversation inteface for nationwide protest trends.
+- [ ] Neural Net for classifying shitposters.
+- [ ] Neural Net for building 'trusted' network of protesters.
+- [ ] Conversational interface for nationwide protest data picked up by bot.
