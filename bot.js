@@ -17,6 +17,11 @@ function streamHastag() {
     });
 
     stream.on('tweet', function(tweet) {
+        // Perform network analysis routines here:
+        // Key people to anchor network: @deray, @shaunking, @nettaaaaaaaa
+        // Follow up with neural net routine for deauthorizing shitposters.
+        // Persist in DB with meta-data.
+        // Retweet 👍
         if (isOriginalMedia(tweet)) {
             // Retweet
             console.log('TRYING TO RETWEET 😬');
